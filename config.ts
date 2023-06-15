@@ -47,6 +47,11 @@ const {argv: argvObj} = yargs(process.argv.slice(2))
     describe: 'Access control and user management method',
     choices: ['default', 'none'],
   })
+  .option('cookiesamesite', {
+    describe: 'Cookie policy for authentication token',
+    choices: ['strict', 'lax', 'none'],
+    default: 'strict'
+  })
   .option('noauth', {
     alias: 'n',
     hidden: true,
@@ -330,6 +335,7 @@ const result = configSchema.safeParse({
   dbPath: path.resolve(path.join(argv.rundir, 'db')),
   tempPath: path.resolve(path.join(argv.rundir, 'temp')),
   authMethod,
+  cookieSameSite: argv.cookiesamesite,
   configUser: connectionSettings,
   floodServerHost: argv.host,
   floodServerPort: argv.port,

@@ -6,6 +6,9 @@ import {clientConnectionSettingsSchema} from './ClientConnectionSettings';
 
 export const authMethodSchema = union([literal('default'), literal('none')]);
 
+export const cookieSameSiteSchema = union([literal('strict'), literal('lax'), literal('none')]);
+
+
 export type AuthMethod = zodInfer<typeof authMethodSchema>;
 
 export const credentialsSchema = strictObject({

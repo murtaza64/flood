@@ -17,7 +17,7 @@
 import {array, boolean, number, strictObject, string} from 'zod';
 import type {infer as zodInfer} from 'zod';
 
-import {authMethodSchema} from './Auth';
+import {authMethodSchema, cookieSameSiteSchema} from './Auth';
 import {clientConnectionSettingsSchema} from './ClientConnectionSettings';
 
 export const configSchema = strictObject({
@@ -59,6 +59,10 @@ export const configSchema = strictObject({
   //  /authenticate or /verify endpoints are accessed. Instead of per-user config, the
   //  configUser settings will be used.
   authMethod: authMethodSchema,
+
+  // CLI argument: --cookiesamesite
+  // SameSite setting for jwt cookie. 
+  cookieSameSite: cookieSameSiteSchema,
 
   // CLI arguments: "When auth=none:" group
   // Settings for the no-user configuration.
